@@ -130,7 +130,11 @@ jQuery(document).ready(($) => {
             answers[2].innerText = question5.answers.choice3;
             answers[3].innerText = question5.answers.choice4;
         } else {
-            $('.game-container').html('<h3 style="text-align:center;">Congratulations! You scored</h3><h2 style="text-align:center;">'+score+' out of 5</h2>')
+            // Update game container with new markup and add button to restart.
+            $('.game-container').html('<h3 style="text-align:center;">Game Completed.</h3><h3 style="text-align:center;">You scored</h3><h2 style="text-align:center;font-size:5rem;color:#fff;">'+score+' out of 5</h2><h3 style="text-align:center;">Congratulations! 🎉</h3><div style="text-align:center;"><button class="btn" id="restartGame">Play Again</button></div>').addClass('complete');
+            $('#restartGame').click(() => {
+                location.reload();
+            });
         }
     }
 
@@ -150,14 +154,29 @@ jQuery(document).ready(($) => {
                 if (question.innerHTML == questionArr[x].question) {
                     // Determin whether or not the answer is correct.
                     if (currentAnswer == questionArr[x].answer) {
-                        $('#correct-or-incorrect').html('<h3 class="d-flex" style="align-items:center;"><div class="circle right"><i class="fas fa-check center-el-abs"></i></div> Yes! You are correct.</h3>');
+                        $('#correct-or-incorrect').html('<h3 class="d-flex" style="align-items:center;"><div class="circle right"><i class="fas fa-check center-el-abs"></i></div> Yes! You are correct.</h3>').addClass('slide-in');
                         // If correct, update the score.
                         score++;
+                        // Add some fun aniomations as well. :)
+                        $('.game-container').addClass('slide-out');
                         setTimeout(() => {
                             $('#score').text(score);
+                            $('#correct-or-incorrect').removeClass('slide-in');
+                            $('.game-container').removeClass('slide-out').addClass('slide-in');
                         }, 1000);
+                        setTimeout(() => {
+                            $('.game-container').removeClass('slide-in');
+                        }, 1500);
                     } else {
-                        $('#correct-or-incorrect').html('<h3 class="d-flex" style="align-items:center;"><div class="circle wrong"><i class="fas fa-times center-el-abs"></i></div> No! That is not correct.</h3>');
+                        $('#correct-or-incorrect').html('<h3 class="d-flex" style="align-items:center;"><div class="circle wrong"><i class="fas fa-times center-el-abs"></i></div> No! That is not correct.</h3>').addClass('slide-in');
+                        $('.game-container').addClass('slide-out');
+                        setTimeout(() => {
+                            $('#correct-or-incorrect').removeClass('slide-in');
+                            $('.game-container').removeClass('slide-out').addClass('slide-in');
+                        }, 1000);
+                        setTimeout(() => {
+                            $('.game-container').removeClass('slide-in');
+                        }, 1500);
                     }
                 }
             }
