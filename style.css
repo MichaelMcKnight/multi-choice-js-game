@@ -10,6 +10,7 @@ body{
 main{
     min-height: 100vh;
     background-image: linear-gradient(#333, #555);
+    padding: 10rem 1rem;
 }
 header{
     text-align: center;
@@ -50,15 +51,6 @@ h2{
     justify-content: center;
     align-items: center;
 }
-.score{
-    padding: 1rem;
-    position: absolute;
-    right: 0;
-    bottom: -100px;
-    text-align: center;
-    background-color: #111;
-    align-items: center;
-}
 .btn{
     cursor:pointer;
     padding: 1rem 2.5rem;
@@ -69,6 +61,15 @@ h2{
 }
 .btn:hover{
     background-color: #333;
+}
+.score{
+    padding: 1rem;
+    position: absolute;
+    right: 0;
+    bottom: -150px;
+    text-align: center;
+    background-color: #111;
+    align-items: center;
 }
 .score h3{
     margin-bottom: 0;
@@ -116,7 +117,7 @@ h2{
     justify-content: space-between;
 }
 .answer{
-    width: 49%;
+    width: 100%;
 }
 .answer input[type=radio]{
     display: none;
@@ -163,7 +164,16 @@ h2{
     opacity: 1;
 }
 @media(min-width:768px) {
+    main{
+        padding: 1rem;
+    }
     h1{
         font-size: 5rem;
+    }
+    .answer{
+        width: 49%;
+    }
+    .score{
+        bottom: -100px;
     }
 }
